@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 import Services from "../components/Services";
-import FeaturedRooms from "../components/FeaturedRooms";
+import FeaturedCars from "../components/FeaturedCars";
 const home = () => {
   return (
     <>
       <Hero>
         <Banner
-          title="Exotic Cars "
+          title="Exotic Car Rentals "
           subtitle="starting at $499"
         >
-          <Link to="/rooms" className="btn-primary">
+          <Link to="/cars" className="btn-primary">
             our Cars
           </Link>
         </Banner>
       </Hero>
       <Services />
-      <FeaturedRooms />
+      <FeaturedCars />
     </>
   );
 };

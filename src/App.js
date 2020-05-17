@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 
 import Home from "./pages/Home";
-import Rooms from "./pages/Rooms";
-import SingleRoom from "./pages/SingleRoom";
+import cars from "./pages/Cars";
+import SingleCar from "./pages/SingleCar";
 import Error from "./pages/Error";
 
 import Navbar from "./components/Navbar";
@@ -16,8 +16,8 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/rooms/" component={Rooms} />
-        <Route exact path="/rooms/:slug" component={SingleRoom} />
+        <Route exact path="/cars/" component={cars} />
+        <Route exact path="/cars/:slug" component={SingleCar} />
         <Route component={Error} />
       </Switch>
     </>

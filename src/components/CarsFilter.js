@@ -1,15 +1,15 @@
 import React from "react";
 import { useContext } from "react";
-import { RoomContext } from "../context";
+import { CarContext } from "../context";
 import Title from "./Title";
 // get all unique values
 const getUnique = (items, value) => {
   return [...new Set(items.map(item => item[value]))];
 };
 
-const RoomsFilter = ({ rooms }) => {
+const CarsFilter = ({ cars }) => {
   // react hooks
-  const context = useContext(RoomContext);
+  const context = useContext(CarContext);
   const {
     handleChange,
     type,
@@ -17,14 +17,12 @@ const RoomsFilter = ({ rooms }) => {
     price,
     minPrice,
     maxPrice,
-    minSize,
-    maxSize,
-    breakfast,
-    pets
+    sport,
+    luxury
   } = context;
 
   // get unique types
-  let types = getUnique(rooms, "type");
+  let types = getUnique(cars, "type");
   // add all
   types = ["all", ...types];
   // map to jsx
@@ -34,7 +32,7 @@ const RoomsFilter = ({ rooms }) => {
     </option>
   ));
   // get unique capacity
-  let people = getUnique(rooms, "capacity");
+  let people = getUnique(cars, "capacity");
   people = people.map((item, index) => (
     <option key={index} value={item}>
       {item}
@@ -42,11 +40,11 @@ const RoomsFilter = ({ rooms }) => {
   ));
   return (
     <section className="filter-container">
-      <Title title="search rooms" />
+      <Title title="search cars" />
       <form className="filter-form">
         {/* select type */}
         <div className="form-group">
-          <label htmlFor="type">room type</label>
+          <label htmlFor="type">Car type</label>
           <select
             name="type"
             id="type"
@@ -58,9 +56,9 @@ const RoomsFilter = ({ rooms }) => {
           </select>
         </div>
         {/* end of select type */}
-        {/* guests  */}
+        {/* occupancy  */}
         <div className="form-group">
-          <label htmlFor="capacity">Guests</label>
+          <label htmlFor="capacity">Occupancy</label>
           <select
             name="capacity"
             id="capacity"
@@ -71,10 +69,10 @@ const RoomsFilter = ({ rooms }) => {
             {people}
           </select>
         </div>
-        {/* end of guests */}
-        {/* room price */}
+        {/* end of occupancy */}
+        {/* Car price */}
         <div className="form-group">
-          <label htmlFor="price">room price ${price}</label>
+          <label htmlFor="price">Car price ${price}</label>
           <input
             type="range"
             name="price"
@@ -86,48 +84,28 @@ const RoomsFilter = ({ rooms }) => {
             className="form-control"
           />
         </div>
-        {/* end of room price*/}
-        {/* size */}
-        <div className="form-group">
-          <label htmlFor="price">room size </label>
-          <div className="size-inputs">
-            <input
-              type="number"
-              name="minSize"
-              value={minSize}
-              onChange={handleChange}
-              className="size-input"
-            />
-            <input
-              type="number"
-              name="maxSize"
-              value={maxSize}
-              onChange={handleChange}
-              className="size-input"
-            />
-          </div>
-        </div>
-        {/* end of select type */}
+        {/* end of Car price*/}
+       
         {/* extras */}
         <div className="form-group">
           <div className="single-extra">
             <input
               type="checkbox"
-              name="breakfast"
-              id="breakfast"
-              checked={breakfast}
+              name="sport"
+              id="sport"
+              checked={sport}
               onChange={handleChange}
             />
-            <label htmlFor="breakfast">breakfast</label>
+            <label htmlFor="sport">sport</label>
           </div>
           <div className="single-extra">
             <input
               type="checkbox"
-              name="pets"
-              checked={pets}
+              name="luxury"
+              checked={luxury}
               onChange={handleChange}
             />
-            <label htmlFor="breakfast">pets</label>
+            <label htmlFor="luxury">luxury</label>
           </div>
         </div>
         {/* end of extras type */}
@@ -136,4 +114,4 @@ const RoomsFilter = ({ rooms }) => {
   );
 };
 
-export default RoomsFilter;
+export default CarsFilter;

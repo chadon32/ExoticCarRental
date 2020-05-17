@@ -2,13 +2,13 @@ import React, { Component } from "react";
 
 import Client from "./contentfull";
 
-const RoomContext = React.createContext();
+const CarContext = React.createContext();
 
-export default class RoomProvider extends Component {
+export default class CarProvider extends Component {
   state = {
-    rooms: [],
-    sortedRooms: [],
-    featuredRooms: [],
+    cars: [],
+    sortedCars: [],
+    featuredCars: [],
     loading: true,
     //
     type: "all",
@@ -18,8 +18,8 @@ export default class RoomProvider extends Component {
     maxPrice: 0,
     minSize: 0,
     maxSize: 0,
-    breakfast: false,
-    pets: false
+    sport: false,
+    luxury: false
   };
 
   getData = async () => {
@@ -27,21 +27,23 @@ export default class RoomProvider extends Component {
       let response = await Client.getEntries({
         content_type: "carRentals"
       });
-      let rooms = this.formatData(response.items);
+      let cars = this.formatData(response.items);
 
-      let featuredRooms = rooms.filter(room => room.featured === true);
+      let featuredCars = cars.filter(car => car.featured === true);
       //
-      let maxPrice = Math.max(...rooms.map(item => item.price));
-      let maxSize = Math.max(...rooms.map(item => item.size));
+      let maxPrice = Math.max(...cars.map(item => item.price));
+      let minPrice = Math.min(...cars.map(item => item.price));
+
       this.setState({
-        rooms,
-        featuredRooms,
-        sortedRooms: rooms,
+        cars,
+        featuredCars,
+        sortedCars: cars,
         loading: false,
         //
         price: maxPrice,
         maxPrice,
-        maxSize
+  
+        minPrice
       });
     } catch (error) {
       console.log(error);
@@ -58,15 +60,15 @@ export default class RoomProvider extends Component {
       let id = item.sys.id;
       let images = item.fields.images.map(image => image.fields.file.url);
 
-      let room = { ...item.fields, images, id };
-      return room;
+      let car = { ...item.fields, images, id };
+      return car;
     });
     return tempItems;
   }
-  getRoom = slug => {
-    let tempRooms = [...this.state.rooms];
-    const room = tempRooms.find(room => room.slug === slug);
-    return room;
+  getCar = slug => {
+    let tempCars = [...this.state.cars];
+    const car = tempCars.find(car => car.slug === slug);
+    return car;
   };
   handleChange = event => {
     const target = event.target;
@@ -78,76 +80,71 @@ export default class RoomProvider extends Component {
       {
         [name]: value
       },
-      this.filterRooms
+      this.filterCars
     );
   };
-  filterRooms = () => {
+  filterCars = () => {
     let {
-      rooms,
+      cars,
       type,
       capacity,
       price,
-      minSize,
-      maxSize,
-      breakfast,
-      pets
+      sport,
+      luxury
     } = this.state;
 
-    let tempRooms = [...rooms];
+    let tempCars = [...cars];
     // transform values
     // get capacity
     capacity = parseInt(capacity);
     price = parseInt(price);
     // filter by type
     if (type !== "all") {
-      tempRooms = tempRooms.filter(room => room.type === type);
+      tempCars = tempCars.filter(car => car.type === type);
     }
     // filter by capacity
     if (capacity !== 1) {
-      tempRooms = tempRooms.filter(room => room.capacity >= capacity);
+      tempCars = tempCars.filter(car => car.capacity >= capacity);
     }
     // filter by price
-    tempRooms = tempRooms.filter(room => room.price <= price);
-    //filter by size
-    tempRooms = tempRooms.filter(
-      room => room.size >= minSize && room.size <= maxSize
-    );
-    //filter by breakfast
-    if (breakfast) {
-      tempRooms = tempRooms.filter(room => room.breakfast === true);
+    tempCars = tempCars.filter(car => car.price <= price);
+ 
+    //filter by sport
+    if (sport) {
+      tempCars = tempCars.filter(car => car.sport === true);
     }
-    //filter by pets
-    if (pets) {
-      tempRooms = tempRooms.filter(room => room.pets === true);
+    //filter by Luxury
+    if (luxury) {
+      tempCars = tempCars.filter(car => car.luxury === true);
     }
     this.setState({
-      sortedRooms: tempRooms
+      sortedCars: tempCars
     });
   };
   render() {
     return (
-      <RoomContext.Provider
+      <CarContext.Provider
         value={{
           ...this.state,
-          getRoom: this.getRoom,
+          getCar: this.getCar,
           handleChange: this.handleChange
         }}
       >
         {this.props.children}
-      </RoomContext.Provider>
+      </CarContext.Provider>
     );
   }
 }
-const RoomConsumer = RoomContext.Consumer;
+const CarConsumer = CarContext.Consumer;
 
-export { RoomProvider, RoomConsumer, RoomContext };
+export { CarProvider, CarConsumer, CarContext };
 
-export function withRoomConsumer(Component) {
+export function withCarConsumer(Component) {
   return function ConsumerWrapper(props) {
     return (
-      <RoomConsumer>
+      <CarConsumer>
         {value => <Component {...props} context={value} />}
-      </RoomConsumer>
+      </CarConsumer>
     );
   };
 }

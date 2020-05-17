@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import defaultImg from "../images/exoticcar3.jpg";
 const StyledHero = styled.header`
-  min-height: 60vh;
+  min-height: 100vh;
+
+
   /* background: url(${defaultImg}); */
   background: url(${props => (props.img ? props.img : defaultImg)});
-  display: flex;
+  background-repeat: space;
+  background-position: center;
+   
+background-color: black;
+  display: grid;
   align-items: center;
   justify-content: center;
 `;
