@@ -5,11 +5,19 @@
   "dependencies": {
     "acorn": "^7.2.0",
     "contentful": "^7.14.4",
+    "eslint-utils": "^2.0.0",
+    "handlebars": "^4.7.6",
+    "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
+    "minimist": "^1.2.5",
+    "mixin-deep": "^2.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.0.0",
+    "serialize-javascript": "^3.0.0",
+    "set-value": "^3.0.2",
     "styled-components": "^4.4.1"
   },
   "scripts": {
