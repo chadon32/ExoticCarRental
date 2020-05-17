@@ -14,8 +14,9 @@ background-color: black;
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 800px) {
-    background-size: 100%;
+  @media (max-width: 480px) {
+    background-size: 100% ;
+    background-repeat: no-repeat;
 
  }
 
