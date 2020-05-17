@@ -13,6 +13,13 @@ background-color: black;
   display: grid;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 800px) {
+    background-size: 100%;
+
+ }
+
+
 `;
 
 export default StyledHero;

@@ -173,6 +173,17 @@ h6 {
   justify-content: center;
   
 }
+
+
+@media (max-width: 800px){
+  .defaultHero,
+  .carsHero {
+    background-size: 100% 100%
+  }
+  .carHero {
+    background-size: 100% 100%
+  }
+}
 /* End of Hero */
 /* Banner */
 .banner {
@@ -400,7 +411,7 @@ background-color: black;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-row-gap: 2rem;
   grid-column-gap: 50px;
-  border-style: solid;
+
 }
 .single-car-images img {
   width: 100%;
@@ -535,6 +546,7 @@ background-color: black;
   border: 1px solid var(--mainBlack);
   border-radius: 0.3rem;
   margin-right: 0.3rem;
+  
 }
 .single-extra label {
   display: inline-block;

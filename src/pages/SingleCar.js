@@ -34,14 +34,13 @@ export default class SingleCar extends Component {
       name,
       description,
       capacity,
-      size,
       price,
       extras,
       sport,
       luxury,
       images
     } = car;
-    const [main, ...defaultImages] = images;
+    const [, ...defaultImages] = images;
   
 
     return (
