@@ -24,7 +24,7 @@ export default class Services extends Component {
       },
       {
         icon: <FaBitcoin />,
-        title: "Bitcion",
+        title: "Bitcoin",
         info:
           "Were the only company that accepts bitcoin"
       }
