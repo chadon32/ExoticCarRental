@@ -7,7 +7,7 @@
     "contentful": "^7.14.4",
     "eslint-utils": "^2.0.0",
     "handlebars": "^4.7.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash.template": "^4.5.0",
     "minimist": "^1.2.5",
     "mixin-deep": "^2.0.1",
